@@ -1,0 +1,16 @@
+import Link from "next/link";
+import { Cta } from "../components/site";
+
+const reviewPoints = ["Current plan costs and renewal increases", "Employee contributions, networks, and plan design", "Level-funded options when they fit", "Owner protection and business continuity"];
+const audiences = [["Technology firms", "/tech-firms", "Compete for talent without overspending."], ["Contractors and trades", "/trades", "Build benefits around field-based teams."], ["Owner-led businesses", "/about", "Make decisions with the whole business in view."]];
+
+export default function Home() {
+  return <>
+    <section className="hero home-hero"><div className="shell hero-grid"><div><p className="eyebrow">Small business benefits, made clearer</p><h1>Better benefits decisions start with a better review.</h1><p className="hero-intro">DWAI Consulting helps owner-led businesses understand health insurance costs, employee benefits, level-funded options, and owner protection strategies.</p><div className="hero-actions"><Link className="button" href="/#review">Request a review</Link><Link className="text-link" href="/level-funded">Explore level-funded plans <span>→</span></Link></div><p className="hero-note">Based in Illinois. Serving clients nationwide.</p></div><div className="hero-card"><p className="card-kicker">The DWAI approach</p><h2>Start with the business. Not just the quote.</h2><p>A useful review considers cost, employee experience, risk, and long-term fit together.</p><div className="card-rule" /><p className="card-stat"><strong>10+</strong><span>employee businesses are generally the best fit for our health insurance reviews.</span></p></div></div></section>
+    <section className="shell intro-section"><div className="section-label">A structured review</div><div><h2>Health insurance keeps getting more expensive. Changing plans still feels risky.</h2><p>That is why the first step should not be guessing. DWAI helps you understand whether your current benefits program still fits your company, workforce, budget, and renewal timeline.</p></div></section>
+    <section className="shell review-grid"><div><p className="eyebrow">What we look at</p><h2>More than a renewal spreadsheet.</h2><p>Your plan is part of a larger business decision. We help make the tradeoffs visible.</p></div><ul>{reviewPoints.map((point) => <li key={point}><span>0{reviewPoints.indexOf(point) + 1}</span>{point}</li>)}</ul></section>
+    <section className="audience-section"><div className="shell"><p className="eyebrow">Built for the way you work</p><h2>Clear guidance for owner-led businesses.</h2><div className="audience-grid">{audiences.map(([title, href, body]) => <Link className="audience-card" href={href} key={href}><span className="arrow">↗</span><h3>{title}</h3><p>{body}</p></Link>)}</div></div></section>
+    <section className="shell resource-section"><div><p className="eyebrow">Useful before you buy</p><h2>Good questions save more than good guesses.</h2></div><div className="resource-copy"><p>Read practical insights on premiums, provider networks, prescription costs, level-funded plans, and business continuity.</p><Link className="text-link" href="/blog">Read the benefits insights <span>→</span></Link></div></section>
+    <div className="shell"><Cta /></div>
+  </>;
+}
