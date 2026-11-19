@@ -29,5 +29,9 @@
     "build": "vite build",
     "start": "vite preview",
     "deploy": "vinext-cloudflare deploy"
+  },
+  "allowScripts": {
+    "workerd@1.20261117.1": true,
+    "workerd@1.20261118.1": true
   }
 }
