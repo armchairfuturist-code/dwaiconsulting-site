@@ -1,7 +1,12 @@
-node_modules
+.cloudflare
+.cloudflare/
+.deploy
+/dist/
+dist
 .env*
 .next
 next-env.d.ts
-/dist/
+node_modules
+*.tsbuildinfo
+.vinext
 .vinext/
-.cloudflare/
