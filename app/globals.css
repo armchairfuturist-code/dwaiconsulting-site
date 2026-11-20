@@ -470,3 +470,11 @@ body { background: var(--color-paper); color: var(--color-ink); font-family: 'DM
 .footer-social { display: flex; gap: 1rem; margin-top: .85rem; }
 .footer-social a { font-size: .78rem; letter-spacing: .04em; text-transform: uppercase; }
 @media (max-width: 700px) { .data-section { background: var(--color-ink); } .gap-delta strong { font-size: 2.2rem; } }
+
+/* mobile: footer links must clear 44px tap target */
+@media (max-width: 700px) {
+  .footer-grid a { display: flex; align-items: center; min-height: 44px; }
+  .footer-grid p { margin-top: .35rem; }
+  .footer-social { gap: 1.4rem; }
+  .footer-social a { min-height: 44px; }
+}
