@@ -348,3 +348,22 @@ body { background: var(--color-paper); color: var(--color-ink); font-family: 'DM
 @media (prefers-reduced-motion: reduce) {
   .menu-bars, .menu-bars::before, .menu-bars::after { transition: none; }
 }
+
+/* FAQ — accessible disclosure list, migrated from the GoDaddy accordions */
+.faq { margin-top: 4rem; border-top: 1px solid var(--line-break); padding-top: 2.5rem; }
+.faq h2 { font: 500 clamp(1.5rem, 2.6vw, 2rem) / 1.15 var(--font-display); letter-spacing: -0.02em; margin: 0.5rem 0 1.75rem; }
+.faq-list { border-top: 1px solid var(--line); }
+.faq-item { border-bottom: 1px solid var(--line); }
+.faq-item summary { display: grid; grid-template-columns: 3rem 1fr 1.25rem; align-items: baseline; gap: 0.75rem; padding: 1.15rem 0; cursor: pointer; list-style: none; }
+.faq-item summary::-webkit-details-marker { display: none; }
+.faq-item summary::after { content: "+"; grid-column: 3; font: 400 1.25rem/1 var(--font-mono); color: var(--muted); justify-self: end; }
+.faq-item[open] summary::after { content: "\2212"; }
+.faq-index { font: 400 0.75rem/1.6 var(--font-mono); color: var(--muted); letter-spacing: 0.06em; }
+.faq-q { font-weight: 500; letter-spacing: -0.01em; }
+.faq-a { padding: 0 0 1.25rem 3.75rem; max-width: 62ch; }
+.faq-a p { margin: 0; color: var(--muted-text); line-height: 1.65; }
+.faq-item summary:hover .faq-q { text-decoration: underline; text-decoration-color: var(--coral); text-underline-offset: 0.2em; }
+.faq-item summary:focus-visible { outline: 2px solid var(--focus); outline-offset: 3px; }
+.header-phone { font: 500 0.85rem/1 var(--font-mono); color: var(--ink); text-decoration: none; letter-spacing: 0.01em; }
+.header-phone:hover { color: var(--coral); }
+@media (max-width: 860px) { .header-phone { display: none; } .faq-a { padding-left: 0; } .faq-item summary { grid-template-columns: 2.25rem 1fr 1.25rem; } }

@@ -84,3 +84,25 @@ export const servicePages: Record<string, ServicePage> = {
 
 export function getBlogPost(slug: string) { return blogPosts.find((post) => post.slug === slug); }
 export function formatDate(date: string) { return new Intl.DateTimeFormat("en-US", { dateStyle: "long" }).format(new Date(`${date}T12:00:00`)); }
+
+// Migrated verbatim from the live GoDaddy pages so the answers stay Steve's words.
+export type FaqItem = { q: string; a: string };
+
+export const faqs: Record<string, FaqItem[]> = {
+  "level-funded": [
+    { q: "Why is it called level-funded?", a: "The term refers to the predictable monthly payment structure used to fund estimated claims costs, administration, and stop-loss coverage." },
+    { q: "Are they always less expensive?", a: "Not necessarily. Cost outcomes depend on many factors, including workforce demographics, claims expectations, participation levels, industry type, and overall plan structure." },
+    { q: "What kind of networks do you get?", a: "Most level-funded arrangements provide access to broad, nationwide PPO networks. This also makes them a good fit for employers with employees in multiple states." },
+    { q: "What size businesses typically evaluate level-funded plans?", a: "Level-funded plans are commonly evaluated by businesses with approximately 10-50 employees, although suitability varies by group." },
+    { q: "Is stop-loss coverage included?", a: "Yes. Level-funded arrangements include stop-loss protection designed to help limit large claims exposure." },
+    { q: "Are level-funded plans risky?", a: "They can carry different risks than fully insured plans. That is why stop-loss protection, contract terms, claims assumptions, and renewal strategy need to be reviewed carefully." },
+    { q: "Do employees notice the difference?", a: "Often, employees mainly notice the carrier, network, doctors, prescriptions, deductible, copays, and payroll deductions. The funding method matters to the employer, but the employee experience still depends on the plan design and network." },
+  ],
+  "buy-sell-1": [
+    { q: "What is the purpose of a buy-sell agreement?", a: "A buy-sell agreement helps establish how ownership interests will be transferred following events such as death, disability, retirement, or departure from the business." },
+    { q: "Why is life insurance commonly used?", a: "Life insurance can provide immediate liquidity to help fund ownership buyouts and reduce financial pressure during ownership transition." },
+    { q: "What is the difference between cross-purchase and entity-purchase agreements?", a: "Cross-purchase agreements involve surviving owners purchasing ownership interests directly, while entity-purchase agreements involve the business purchasing the ownership interest." },
+    { q: "Does every business need a buy-sell agreement?", a: "Not necessarily. However, businesses with multiple owners, concentrated leadership, or long-term continuity concerns often benefit from evaluating ownership transition planning." },
+    { q: "Can buy-sell agreements help reduce disputes?", a: "Properly structured agreements may help reduce uncertainty regarding ownership rights, valuation methods, and transition procedures." },
+  ],
+};

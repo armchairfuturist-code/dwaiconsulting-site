@@ -6,6 +6,10 @@ set -euo pipefail
 cd "$(dirname "$0")/.."
 export CLOUDFLARE_ACCOUNT_ID="${CLOUDFLARE_ACCOUNT_ID:-86a92d3f5ed4b3313381515ca4208ae7}"
 
+# Canonicals must name the host that serves them. Preview deploys self-reference the
+# workers.dev origin; a cutover deploy sets SITE_URL=https://dwaiconsulting.com.
+export SITE_URL="${SITE_URL:-https://dwaiconsulting-site.armchairfuturist.workers.dev}"
+echo "building with SITE_URL=$SITE_URL"
 npm run build
 
 SRC=.cloudflare/output/v1/workers/default
