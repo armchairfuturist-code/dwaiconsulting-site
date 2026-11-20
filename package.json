@@ -28,7 +28,8 @@
     "dev": "vite dev",
     "build": "vite build",
     "start": "vite preview",
-    "deploy": "bash scripts/deploy.sh"
+    "deploy": "bash scripts/deploy.sh",
+    "lint:design": "npx -y @google/design.md lint DESIGN.md"
   },
   "allowScripts": {
     "workerd@1.20261117.1": true,
