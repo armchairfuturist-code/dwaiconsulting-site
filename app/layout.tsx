@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Script from "next/script";
 import "./globals.css";
 import { Footer, Header } from "../components/site";
+import { MotionRoot } from "../components/motion";
 import { BUSINESS, SITE_URL } from "../lib/site";
 
 export const metadata: Metadata = {
@@ -52,12 +53,18 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
             }),
           }}
         />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: "if('IntersectionObserver' in window&&!matchMedia('(prefers-reduced-motion: reduce)').matches)document.documentElement.classList.add('js')",
+          }}
+        />
       </head>
       <body>
         <a className="skip-link" href="#main">Skip to content</a>
         <Header />
         <main id="main">{children}</main>
         <Footer />
+        <MotionRoot />
       </body>
     </html>
   );

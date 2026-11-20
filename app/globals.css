@@ -478,3 +478,74 @@ body { background: var(--color-paper); color: var(--color-ink); font-family: 'DM
   .footer-social { gap: 1.4rem; }
   .footer-social a { min-height: 44px; }
 }
+
+/* ============ motion ============ */
+:root { --ease-in-out: cubic-bezier(.77,0,.175,1); }
+
+/* Scroll reveals: one pass, never replayed. Only ever transform + opacity. */
+.js [data-reveal] { opacity: 0; transform: translateY(18px); transition: opacity 600ms var(--ease-out), transform 600ms var(--ease-out); }
+.js [data-reveal].is-in { opacity: 1; transform: none; }
+
+/* Hero: the eye is led kicker -> headline -> proof, in reading order. */
+@keyframes rise { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
+.js .hero-kicker { animation: rise 480ms var(--ease-out) 40ms both; }
+.js .editorial-hero h1 { animation: rise 640ms var(--ease-out) 120ms both; }
+.js .editorial-hero .hero-intro { animation: rise 640ms var(--ease-out) 200ms both; }
+.js .editorial-hero .hero-actions { animation: rise 640ms var(--ease-out) 280ms both; }
+.js .editorial-hero .hero-proof { animation: rise 640ms var(--ease-out) 360ms both; }
+.js .editorial-hero::before { animation: ruleIn 900ms var(--ease-out) both; }
+@keyframes ruleIn { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+.editorial-hero::before { transform-origin: 0 50%; }
+
+/* Review list: rows land in the order they are read. */
+.js .review-list li { opacity: 0; transform: translateY(12px); transition: opacity 460ms var(--ease-out), transform 460ms var(--ease-out); }
+.js .is-in .review-list li { opacity: 1; transform: none; }
+.js .is-in .review-list li:nth-child(2) { transition-delay: 70ms; }
+.js .is-in .review-list li:nth-child(3) { transition-delay: 140ms; }
+.js .is-in .review-list li:nth-child(4) { transition-delay: 210ms; }
+
+/* Audience cards: same, so the three options read as a set. */
+.js .audience-grid .audience-card { opacity: 0; transform: translateY(14px); transition: opacity 480ms var(--ease-out), transform 480ms var(--ease-out), box-shadow 200ms ease-out; }
+.js .is-in .audience-card { opacity: 1; transform: none; }
+.js .is-in .audience-card:nth-child(2) { transition-delay: 80ms; }
+.js .is-in .audience-card:nth-child(3) { transition-delay: 160ms; }
+
+/* The chart answers its own question: bar length is the comparison. */
+.js .data-figure:not(.is-in) .bar i { transform: scaleX(0); }
+.js .bar i { transform-origin: 0 50%; transition: transform 900ms var(--ease-in-out); }
+.js .is-in .bar i { transform: scaleX(1); }
+.js .is-in .gap-table tbody tr:nth-child(2) .bar i { transition-delay: 120ms; }
+.js .data-figure:not(.is-in) .gap-delta strong { opacity: 0; transform: translateY(8px); }
+.js .gap-delta strong { transition: opacity 500ms var(--ease-out) 300ms, transform 500ms var(--ease-out) 300ms; }
+
+/* Header earns a shadow once the page is moving under it. */
+.site-header { transition: box-shadow 200ms ease-out, background-color 200ms ease-out; }
+.site-header.is-scrolled { box-shadow: 0 1px 0 rgba(16,43,61,.14), 0 10px 30px -18px rgba(16,43,61,.55); }
+
+/* Links wipe an underline instead of snapping one on. */
+.text-link, .main-nav a, .site-footer a { background-image: linear-gradient(currentColor, currentColor); background-repeat: no-repeat; background-position: 0 100%; background-size: 0% 1px; transition: background-size 280ms var(--ease-out), color 160ms ease-out; }
+.text-link:hover, .main-nav a:hover, .site-footer a:hover { background-size: 100% 1px; }
+
+/* FAQ answers open rather than appear. */
+.faq-a { overflow: hidden; }
+.faq-item[open] .faq-a { animation: faqOpen 260ms var(--ease-out) both; }
+@keyframes faqOpen { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: none; } }
+.faq-item summary { transition: color 160ms ease-out; }
+.faq-item summary:active { transform: scale(.995); }
+
+/* Mobile menu: rows arrive as a stack, so the list reads top to bottom. */
+@media (max-width: 700px) {
+  .js .menu-panel[data-open="true"] nav a { animation: rise 320ms var(--ease-out) both; }
+  .js .menu-panel[data-open="true"] nav a:nth-child(1) { animation-delay: 20ms; }
+  .js .menu-panel[data-open="true"] nav a:nth-child(2) { animation-delay: 55ms; }
+  .js .menu-panel[data-open="true"] nav a:nth-child(3) { animation-delay: 90ms; }
+  .js .menu-panel[data-open="true"] nav a:nth-child(4) { animation-delay: 125ms; }
+  .js .menu-panel[data-open="true"] nav a:nth-child(5) { animation-delay: 160ms; }
+  .js .menu-panel[data-open="true"] nav a:nth-child(6) { animation-delay: 195ms; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .js [data-reveal], .js .review-list li, .js .audience-grid .audience-card { opacity: 1 !important; transform: none !important; transition: none !important; animation: none !important; }
+  .js .bar i { transition: none; transform: none !important; }
+  .js .editorial-hero h1, .js .hero-kicker, .js .hero-intro, .js .hero-actions, .js .hero-proof, .js .editorial-hero::before { animation: none !important; }
+}

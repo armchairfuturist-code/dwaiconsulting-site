@@ -9,13 +9,13 @@ export function CostGap() {
   return (
     <section className="data-section grain" aria-labelledby="cost-shift-heading">
       <div className="shell">
-        <div className="data-head">
+        <div className="data-head" data-reveal>
           <p className="eyebrow">The cost shift · 2024 market data</p>
           <h2 id="cost-shift-heading">The premium is not where the pressure lands.</h2>
           <p className="data-deck">Most owners track the renewal number. The number their people feel is the deductible, and for smaller employers it is far larger.</p>
         </div>
 
-        <figure className="data-figure">
+        <figure className="data-figure" data-reveal>
           <table className="gap-table">
             <caption className="sr-only">Average annual deductible for single coverage at firms under 200 workers compared with firms of 200 or more workers, 2024</caption>
             <thead>
@@ -33,7 +33,7 @@ export function CostGap() {
                       <span className={`bar ${row.tone}`} aria-hidden="true">
                         <i style={{ width: row.width + "%" }} />
                       </span>
-                      <b>${row.value.toLocaleString("en-US")}</b>
+                      <b data-count={row.value} data-prefix="$">${row.value.toLocaleString("en-US")}</b>
                     </span>
                   </td>
                 </tr>
@@ -47,17 +47,17 @@ export function CostGap() {
           <figcaption>Source: KFF 2024 Employer Health Benefits Survey, 2,142 firms. Covered workers with a general annual deductible.</figcaption>
         </figure>
 
-        <div className="stat-strip">
+        <div className="stat-strip" data-reveal>
           <div className="stat">
-            <b>$1,787</b>
+            <b data-count="1787" data-prefix="$">$1,787</b>
             <span>Average single deductible across all covered workers.</span>
           </div>
           <div className="stat">
-            <b>32%</b>
+            <b data-count="32" data-suffix="%">32%</b>
             <span>Of covered workers at smaller firms face a $3,000 or higher single deductible.</span>
           </div>
           <div className="stat">
-            <b>$25,572</b>
+            <b data-count="25572" data-prefix="$">$25,572</b>
             <span>Average family premium in 2024, up 7% for a second straight year.</span>
           </div>
         </div>
