@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { ContactForm } from "./contact-form";
 import { BUSINESS } from "../lib/site";
 import type { ReactNode } from "react";
 import type { Section } from "../lib/content";
@@ -10,7 +11,7 @@ export function Header() { return <header className="site-header"><div className
 
 export function Footer() { return <footer className="site-footer"><div className="shell footer-grid"><div><Link className="brand brand-footer" href="/"><img src="/dwai3.jpg" alt="DWAI Consulting" width={870} height={574} /></Link><p>Practical benefits guidance for owner-led businesses.</p></div><div><p className="footer-label">Explore</p><Link href="/level-funded">Level-funded plans</Link><Link href="/benefits">Employee benefits</Link><Link href="/buy-sell-1">Buy-sell planning</Link><Link href="/blog">Benefits insights</Link></div><div><p className="footer-label">Contact</p><a href="mailto:steve@dwaiconsulting.com">steve@dwaiconsulting.com</a><a href="tel:+1-773-203-6104">{BUSINESS.phoneDisplay}</a><p>Sioux Falls, SD.<br />Serving clients nationwide.</p></div></div><div className="shell footer-bottom"><span>© {new Date().getFullYear()} DWAI Consulting, LLC</span><Link href="/privacy-and-terms">Privacy and terms</Link></div></footer>; }
 
-export function Cta({ children = "Start with a structured review" }: { children?: ReactNode }) { return <section className="cta-band" id="review"><div><p className="eyebrow">Make the next decision clearer</p><h2>More than a quote spreadsheet.</h2><p>Review your current plan, your workforce, and your options before renewal pressure takes over.</p></div><a className="button button-light" href="mailto:steve@dwaiconsulting.com?subject=Benefits%20review%20request">{children}</a></section>; }
+export function Cta({ children = "Start with a structured review" }: { children?: ReactNode }) { return <section className="cta-band" id="review"><div><p className="eyebrow">Make the next decision clearer</p><h2>More than a quote spreadsheet.</h2><p>Review your current plan, your workforce, and your options before renewal pressure takes over.</p></div><div><p className="eyebrow">Prefer to talk first?</p><p>Call <a href="tel:+1-773-203-6104">773-203-6104</a> or email <a href="mailto:steve@dwaiconsulting.com">steve@dwaiconsulting.com</a>. {children}</p></div><div className="cta-contact"><ContactForm /></div></section>; }
 
 export function SectionList({ sections }: { sections: Section[] }) { return <div className="section-list">{sections.map((section) => <section className="content-section" key={section.heading}><h2>{section.heading}</h2>{section.body && <p>{section.body}</p>}{section.bullets && <ul>{section.bullets.map((bullet) => <li key={bullet}>{bullet}</li>)}</ul>}</section>)}</div>; }
 

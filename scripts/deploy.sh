@@ -35,7 +35,11 @@ cat > "$STAGE/wrangler.jsonc" <<'JSON'
   },
   "workers_dev": true,
   "preview_urls": false,
-  "observability": { "enabled": true }
+  "observability": { "enabled": true },
+  "vars": {
+    "CONTACT_TO": "steve@dwaiconsulting.com",
+    "CONTACT_FROM": "DWAI Website <website@dwaiconsulting.com>"
+  }
 }
 JSON
 
