@@ -1,17 +1,20 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import type { ReactNode } from "react";
+import { createElement, type ReactNode } from "react";
 import { Cta } from "../../../../components/site";
 import { getBlogPost, formatDate, blogPosts, type BlogBlock } from "../../../../lib/content";
 
 type Props = { params: Promise<{ slug: string }> };
+
+const HEADING: Record<string, number> = { "header-two": 2, "header-three": 3, "header-four": 4, "header-five": 5, "header-six": 6 };
 
 const SITE = "https://dwaiconsulting-site.armchairfuturist.workers.dev";
 
 function renderBlocks(blocks: BlogBlock[]): ReactNode[] {
   const out: ReactNode[] = [];
   let list: { ordered: boolean; items: string[] } | null = null;
+  const stack: number[] = [];
   const flush = () => {
     if (!list) return;
     const items = list.items.map((text, i) => <li key={i}>{text}</li>);
@@ -30,14 +33,15 @@ function renderBlocks(blocks: BlogBlock[]): ReactNode[] {
       return;
     }
     flush();
-    switch (block.type) {
-      case "header-two": out.push(<h2 key={i}>{text}</h2>); break;
-      case "header-three": out.push(<h3 key={i}>{text}</h3>); break;
-      case "header-four": out.push(<h4 key={i}>{text}</h4>); break;
-      case "header-five": out.push(<h5 key={i}>{text}</h5>); break;
-      case "blockquote": out.push(<blockquote key={i}>{text}</blockquote>); break;
-      default: out.push(<p key={i}>{text}</p>);
+    const source = HEADING[block.type];
+    if (source) {
+      while (stack.length && stack[stack.length - 1] >= source) stack.pop();
+      stack.push(source);
+      out.push(createElement(`h${Math.min(6, stack.length + 1)}`, { key: i }, text));
+      return;
     }
+    if (block.type === "blockquote") { out.push(<blockquote key={i}>{text}</blockquote>); return; }
+    out.push(<p key={i}>{text}</p>);
   });
   flush();
   return out;
