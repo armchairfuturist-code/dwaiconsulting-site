@@ -7,6 +7,7 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://dwaiconsulting.com"),
   title: { default: "DWAI Consulting | Small Business Benefits Guidance", template: "%s | DWAI Consulting" },
   description: "Practical health insurance, employee benefits, level-funded plan, and owner protection guidance for small businesses.",
+  alternates: { canonical: "/" },
   openGraph: { type: "website", siteName: "DWAI Consulting", title: "DWAI Consulting | Small Business Benefits Guidance", description: "Practical benefits guidance for owner-led businesses." },
 };
 
@@ -28,8 +29,9 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         />
       </head>
       <body>
+        <a className="skip-link" href="#main">Skip to content</a>
         <Header />
-        <main>{children}</main>
+        <main id="main">{children}</main>
         <Footer />
       </body>
     </html>

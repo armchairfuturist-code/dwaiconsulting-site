@@ -1,10 +1,11 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
 import type { Section } from "../lib/content";
+import { MobileNav } from "./mobile-nav";
 
 const nav = [["Level-Funded", "/level-funded"], ["Benefits", "/benefits"], ["Buy-Sell", "/buy-sell-1"], ["Insights", "/blog"], ["About", "/about"]] as const;
 
-export function Header() { return <header className="site-header"><div className="shell header-inner"><Link className="brand" href="/" aria-label="DWAI Consulting home"><img src="/dwai3.jpg" alt="DWAI Consulting" /></Link><nav className="main-nav" aria-label="Main navigation">{nav.map(([label, href]) => <Link href={href} key={href}>{label}</Link>)}</nav><Link className="button button-small" href="/#review">Get a review</Link></div></header>; }
+export function Header() { return <header className="site-header"><div className="shell header-inner"><Link className="brand" href="/" aria-label="DWAI Consulting home"><img src="/dwai3.jpg" alt="DWAI Consulting" /></Link><nav className="main-nav" aria-label="Main navigation">{nav.map(([label, href]) => <Link href={href} key={href}>{label}</Link>)}</nav><Link className="button button-small header-cta" href="/#review">Get a review</Link><MobileNav /></div></header>; }
 
 export function Footer() { return <footer className="site-footer"><div className="shell footer-grid"><div><Link className="brand brand-footer" href="/"><img src="/dwai3.jpg" alt="DWAI Consulting" /></Link><p>Practical benefits guidance for owner-led businesses.</p></div><div><p className="footer-label">Explore</p><Link href="/level-funded">Level-funded plans</Link><Link href="/benefits">Employee benefits</Link><Link href="/buy-sell-1">Buy-sell planning</Link><Link href="/blog">Benefits insights</Link></div><div><p className="footer-label">Contact</p><a href="mailto:steve@dwaiconsulting.com">steve@dwaiconsulting.com</a><p>Based in Illinois.<br />Serving clients nationwide.</p></div></div><div className="shell footer-bottom"><span>© {new Date().getFullYear()} DWAI Consulting, LLC</span><Link href="/privacy-and-terms">Privacy and terms</Link></div></footer>; }
 
