@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { createElement, type ReactNode } from "react";
 import { Cta } from "../../../../components/site";
+import { ReadingProgress } from "../../../../components/reading-progress";
 import { getBlogPost, formatDate, blogPosts, type BlogBlock } from "../../../../lib/content";
 
 type Props = { params: Promise<{ slug: string }> };
@@ -83,6 +84,7 @@ export default async function ArticlePage({ params }: Props) {
   };
   return (
     <article className="article-shell">
+      <ReadingProgress />
       <div className="article-head">
         <Link className="article-back" href="/blog">← All insights</Link>
         <p className="hero-kicker">Executive benefits insights</p>
