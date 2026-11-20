@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 
 const links = [
+  ["Home", "/"],
   ["Level-Funded", "/level-funded"],
   ["Benefits", "/benefits"],
   ["Buy-Sell", "/buy-sell-1"],

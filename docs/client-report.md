@@ -6,12 +6,12 @@ A plain-English overview of what the rebuilt website does that the old one could
 
 ## 1. Hosting — moved from GoDaddy to Cloudflare
 
-| Old (GoDaddy) | New (Cloudflare) |
-|---|---|
-| ~ **$600 / year** for hosting | **Free** — charges only if traffic spikes beyond free tier |
-| Managed entirely by GoDaddy | You own every credential — no vendor lock-in |
-| Hard to change anything | Push code changes from this laptop in seconds |
-| Pages rendered through their builder | Pages are fast HTML served from the edge |
+| Old (GoDaddy)                         | New (Cloudflare)                                           |
+| ------------------------------------- | ---------------------------------------------------------- |
+| ~ **$600 / year** for website hosting | **Free** — charges only if traffic spikes beyond free tier |
+| Managed entirely by GoDaddy           | You own every credential — no vendor lock-in               |
+| Hard to change anything               | Push code changes from this laptop in seconds              |
+| Pages rendered through their builder  | Pages are fast HTML served from the edge                   |
 
 Your domain stays registered with GoDaddy — nothing is lost. Only hosting moves.
 

@@ -322,9 +322,12 @@ body { background: var(--color-paper); color: var(--color-ink); font-family: 'DM
 .menu-bars[data-open="true"]::before { transform: translateY(6px) rotate(45deg); }
 .menu-bars[data-open="true"]::after { transform: translateY(-6px) rotate(-45deg); }
 .menu-panel {
-  position: fixed; inset: 0; z-index: 90;
+  /* Sits below the 60px header so the logo (home) and the close button stay
+     reachable, and stacks under it so a tap on the X actually hits the X. */
+  position: fixed; inset: 60px 0 0 0; z-index: 70;
   display: flex; flex-direction: column; justify-content: center; gap: .25rem;
-  padding: 5rem 1.5rem 2rem;
+  padding: 1rem 1.5rem 2rem;
+  overflow-y: auto; overscroll-behavior: contain;
   background: var(--color-paper);
 }
 .menu-panel nav { display: flex; flex-direction: column; }
