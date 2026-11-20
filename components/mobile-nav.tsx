@@ -58,7 +58,6 @@ export function MobileNav() {
           {links.map(([label, href]) => (
             <Link key={href} href={href} onClick={() => setOpen(false)}>
               {label}
-              <span aria-hidden="true">→</span>
             </Link>
           ))}
         </nav>
