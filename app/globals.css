@@ -37,7 +37,7 @@ img, picture, video, canvas, svg { display: block; max-width: 100%; }
 .brand img { width: 8.7rem; height: 5.74rem; object-fit: contain; object-position: left center; mix-blend-mode: multiply; }
 .brand small { display: block; font-size: 0.7rem; font-weight: 400; letter-spacing: 0.06em; text-transform: uppercase; color: var(--color-muted); line-height: 1; margin-top: -0.15rem; }
 .brand-footer { flex-direction: column; gap: 0.3rem; align-items: flex-start; }
-.brand-footer img { width: 8rem; height: 5.25rem; mix-blend-mode: normal; background: var(--color-paper); padding: .4rem .55rem; border-radius: 2px; box-sizing: content-box; }
+.brand-footer img { width: 9rem; height: 5.9rem; mix-blend-mode: normal !important; background: var(--color-paper) !important; padding: .5rem .6rem; border-radius: 3px; box-sizing: content-box; border: 1px solid rgba(255,255,255,.12); }
 
 /* header */
 .site-header { position: sticky; top: 0; z-index: 50; background: rgba(255,255,255,0.92); backdrop-filter: blur(8px); border-bottom: 1px solid var(--color-border); }
@@ -579,7 +579,7 @@ body { background: var(--color-paper); color: var(--color-ink); font-family: 'DM
 @media (pointer: coarse) {
   .site-footer a,
   .footer-bottom a,
-  .form-download { display: inline-flex; align-items: center; min-height: 44px; }
+  .form-download { display: flex; align-items: center; min-height: 44px; }
 }
 
 /* Tightest remaining touch targets */
