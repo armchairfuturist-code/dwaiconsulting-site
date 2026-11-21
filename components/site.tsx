@@ -19,5 +19,5 @@ export function PageHero({ title, intro }: { title: string; intro: string }) { r
 
 export function Faq({ items }: { items: { q: string; a: string }[] }) {
   if (!items.length) return null;
-  return <section className="faq" aria-labelledby="faq-heading"><h2 id="faq-heading">Questions owners ask before they call.</h2><div className="faq-list">{items.map((item, i) => <details className="faq-item" key={item.q} open={i === 0}><summary><span className="faq-index">{String(i + 1).padStart(2, "0")}</span><span className="faq-q">{item.q}</span></summary><div className="faq-a"><p>{item.a}</p></div></details>)}</div></section>;
+  return <section className="faq" aria-labelledby="faq-heading"><h2 id="faq-heading">Questions owners ask before they call.</h2><div className="faq-list">{items.map((item, i) => <details className="faq-item" key={item.q} open={i === 0}><summary><span className="faq-q">{item.q}</span></summary><div className="faq-a"><p>{item.a}</p></div></details>)}</div></section>;
 }

@@ -10,7 +10,7 @@ export function CostGap() {
     <section className="data-section grain" aria-labelledby="cost-shift-heading">
       <div className="shell">
         <div className="data-head" data-reveal>
-          <p className="eyebrow">The cost shift, 2024 market data</p>
+          
           <h2 id="cost-shift-heading">The premium is not where the pressure lands.</h2>
           <p className="data-deck">Most owners track the renewal number. The number their people feel is the deductible, and for smaller employers it is far larger.</p>
         </div>
@@ -62,7 +62,7 @@ export function CostGap() {
           </div>
         </div>
 
-        <p className="data-foot"><Link className="text-link" href="/blog">Read the benefits insights <span aria-hidden="true">↗</span></Link></p>
+        <p className="data-foot"><Link className="text-link" href="/blog">Read the benefits insights</Link></p>
       </div>
     </section>
   );
