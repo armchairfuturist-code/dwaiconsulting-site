@@ -9,13 +9,13 @@ export function CostGap() {
   return (
     <section className="data-section grain" aria-labelledby="cost-shift-heading">
       <div className="shell">
-        <div className="data-head" data-reveal>
+        <div className="data-head">
           
           <h2 id="cost-shift-heading">The premium is not where the pressure lands.</h2>
           <p className="data-deck">Most owners track the renewal number. The number their people feel is the deductible, and for smaller employers it is far larger.</p>
         </div>
 
-        <figure className="data-figure" data-reveal>
+        <figure className="data-figure">
           <table className="gap-table">
             <caption className="sr-only">Average annual deductible for single coverage at firms under 200 workers compared with firms of 200 or more workers, 2024</caption>
             <thead>
@@ -30,7 +30,7 @@ export function CostGap() {
                   <th scope="row">{row.label}</th>
                   <td>
                     <span className="gap-cell">
-                      <span className={`bar ${row.tone}`} aria-hidden="true">
+                      <span className={`bar ${row.tone}`} aria-hidden="true" data-bar>
                         <i style={{ width: row.width + "%" }} />
                       </span>
                       <b>${row.value.toLocaleString("en-US")}</b>
@@ -47,7 +47,7 @@ export function CostGap() {
           <figcaption>Source: KFF 2024 Employer Health Benefits Survey, 2,142 firms. Covered workers with a general annual deductible.</figcaption>
         </figure>
 
-        <div className="stat-strip" data-reveal>
+        <div className="stat-strip">
           <div className="stat">
             <b>$1,787</b>
             <span>Average single deductible across all covered workers.</span>

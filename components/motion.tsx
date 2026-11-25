@@ -6,8 +6,7 @@ import { useEffect } from "react";
  * Minimal motion system.
  *
  * - Header gets a subtle shadow after 12px scroll.
- * - Data chart bars animate scale when they enter view.
- * - Reading progress shows position on article pages.
+ * - Chart bars animate in when their figure enters view.
  *
  * No per-section fade-in. A single page-load entrance (hero),
  * one data-driven reveal (bars), and one UI indicator (progress).
@@ -36,16 +35,16 @@ export function MotionRoot() {
       return;
     }
 
-    // Only animate structural elements that answer a real question.
-    const revealOnce = new Set<Element>();
-    const onReveal = (entry: IntersectionObserverEntry) => {
-      if (!entry.isIntersecting) return;
-      entry.target.classList.add("is-in");
-      revealOnce.add(entry.target);
-    };
-
+    const observed = new Set<Element>();
     const observer = new IntersectionObserver(
-      (entries) => entries.forEach(onReveal),
+      (entries) => {
+        for (const entry of entries) {
+          if (!entry.isIntersecting) continue;
+          entry.target.classList.add("is-in");
+          observed.add(entry.target);
+          observer.unobserve(entry.target);
+        }
+      },
       { threshold: 0.15, rootMargin: "0px 0px -60px 0px" },
     );
 
