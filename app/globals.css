@@ -705,8 +705,8 @@ p { margin: 0; }
 }
 
 /* Scroll reveals: one pass, never replayed. Only ever transform + opacity. */
-.js [data-reveal] { opacity: 0; transform: translateY(24px); transition: opacity 800ms var(--ease-out), transform 800ms var(--ease-out); }
-.js [data-reveal].is-in { opacity: 1; transform: none; }
+.js .data-reveal { opacity: 0; transform: translateY(24px); transition: opacity 800ms var(--ease-out), transform 800ms var(--ease-out); }
+.js .data-reveal.is-in { opacity: 1; transform: none; }
 
 /* ---------- mobile navigation ---------- */
 

@@ -35,25 +35,48 @@ export function MotionRoot() {
       return;
     }
 
-    const observed = new Set<Element>();
+    // Figures count up when their figure arrives. The server renders the final
+    // value, so no JS, no observer, or reduced motion all show the true number.
+    const countUp = (el: HTMLElement) => {
+      const target = Number(el.dataset.count);
+      if (!Number.isFinite(target)) return;
+      const prefix = el.dataset.prefix ?? "";
+      const suffix = el.dataset.suffix ?? "";
+      const started = performance.now();
+      const frame = (now: number) => {
+        const progress = Math.min(1, (now - started) / 850);
+        const eased = 1 - Math.pow(1 - progress, 3);
+        el.textContent = prefix + Math.round(target * eased).toLocaleString("en-US") + suffix;
+        if (progress < 1) requestAnimationFrame(frame);
+        else el.textContent = prefix + target.toLocaleString("en-US") + suffix;
+      };
+      requestAnimationFrame(frame);
+    };
+
+    const reveal = (el: Element) => {
+      el.classList.add("is-in");
+      el.querySelectorAll<HTMLElement>("[data-count]").forEach((node, index) => {
+        window.setTimeout(() => countUp(node), index * 90);
+      });
+    };
+
     const observer = new IntersectionObserver(
       (entries) => {
         for (const entry of entries) {
           if (!entry.isIntersecting) continue;
-          entry.target.classList.add("is-in");
-          observed.add(entry.target);
+          reveal(entry.target);
           observer.unobserve(entry.target);
         }
       },
       { threshold: 0.15, rootMargin: "0px 0px -60px 0px" },
     );
 
-    document.querySelectorAll("[data-bar], [data-reveal]").forEach((el) => observer.observe(el));
+    document.querySelectorAll(".data-reveal, [data-bar]").forEach((el) => observer.observe(el));
 
     const onMotionChange = () => {
       if (reduce.matches) {
         root.classList.remove("js");
-        document.querySelectorAll("[data-reveal], [data-bar]").forEach((el) => el.classList.add("is-in"));
+        document.querySelectorAll(".data-reveal, [data-bar]").forEach((el) => el.classList.add("is-in"));
         observer.disconnect();
       }
     };

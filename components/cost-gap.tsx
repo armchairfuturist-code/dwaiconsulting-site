@@ -33,7 +33,7 @@ export function CostGap() {
                       <span className={`bar ${row.tone}`} aria-hidden="true" data-bar>
                         <i style={{ width: row.width + "%" }} />
                       </span>
-                      <b>${row.value.toLocaleString("en-US")}</b>
+                      <b data-count={row.value} data-prefix="$">${row.value.toLocaleString("en-US")}</b>
                     </span>
                   </td>
                 </tr>
@@ -41,7 +41,7 @@ export function CostGap() {
             </tbody>
           </table>
           <div className="gap-delta">
-            <strong>+67%</strong>
+            <strong data-count="67" data-prefix="+" data-suffix="%">+67%</strong>
             <span>higher average deductible at firms under 200 workers.</span>
           </div>
           <figcaption>Source: KFF 2024 Employer Health Benefits Survey, 2,142 firms. Covered workers with a general annual deductible.</figcaption>
@@ -49,15 +49,15 @@ export function CostGap() {
 
         <div className="stat-strip data-reveal">
           <div className="stat">
-            <b>$1,787</b>
+            <b data-count="1787" data-prefix="$">$1,787</b>
             <span>Average single deductible across all covered workers.</span>
           </div>
           <div className="stat">
-            <b>32%</b>
+            <b data-count="32" data-suffix="%">32%</b>
             <span>Of covered workers at smaller firms face a $3,000 or higher single deductible.</span>
           </div>
           <div className="stat">
-            <b>$25,572</b>
+            <b data-count="25572" data-prefix="$">$25,572</b>
             <span>Average family premium in 2024, up 7% for a second straight year.</span>
           </div>
         </div>
