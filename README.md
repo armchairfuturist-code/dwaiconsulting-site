@@ -43,29 +43,46 @@ Rules that are easy to break by accident:
 
 ## Deploy
 
-Pushing to `main` deploys. `.github/workflows/deploy.yml` runs `scripts/deploy.sh`
-on every push, so whoever can push can ship.
+Three ways to ship. Only the second needs a real secret.
 
-The workflow needs one repo secret, `CLOUDFLARE_API_TOKEN`, holding a token for
-account `86a92d3f5ed4b3313381515ca4208ae7` with **Workers Scripts: Edit**. Set it
-once:
+**1. From this machine (works today, no token).** Wrangler already holds an OAuth
+session here, so a deploy needs no `CLOUDFLARE_API_TOKEN`:
+
+```bash
+npm run deploy
+```
+
+**2. On push, from GitHub Actions.** `.github/workflows/deploy.yml` runs
+`scripts/deploy.sh` for every push to `main`. It needs one repo secret,
+`CLOUDFLARE_API_TOKEN`, for account `86a92d3f5ed4b3313381515ca4208ae7` with
+**Workers Scripts: Edit**:
 
 ```bash
 gh secret set CLOUDFLARE_API_TOKEN -R armchairfuturist-code/dwaiconsulting-site
 ```
 
-Until that secret exists the workflow skips the deploy step with a warning and
-still passes, so pushes are not blocked.
+Until that secret exists the workflow skips the deploy with a warning and still
+passes, so pushes are not blocked.
+
+**3. Or let Cloudflare build it.** Workers Builds connects the repo in the
+dashboard, so Cloudflare builds on push and GitHub stores no secret. In
+**Workers & Pages -> dwaiconsulting-site -> Settings -> Builds**, connect
+`armchairfuturist-code/dwaiconsulting-site`, branch `main`:
+
+- Build command: `npm ci && npm run build`
+- Deploy command: `SKIP_BUILD=1 bash scripts/deploy.sh`
+
+Cloudflare supplies its own short-lived credential for the deploy step. Delete
+`.github/workflows/deploy.yml` if you pick this path, so the two do not both fire.
 
 `scripts/deploy.sh` builds, stages the bundle and assets into `.deploy`, and runs
 `wrangler deploy`. It is a script rather than a plain `wrangler` call because
-`wrangler` refuses to run beside `.cloudflare/output`.
+`wrangler` refuses to run beside `.cloudflare/output`. `SKIP_BUILD=1` reuses an
+existing build.
 
-The workflow sets `SITE_URL` to the temporary workers.dev origin, so canonical
-links match the host that serves them. For the `dwaiconsulting.com` cutover, change
-it to `https://dwaiconsulting.com` in the workflow.
-
-Local deploys still work: `npm run deploy`.
+Its default `SITE_URL` is the temporary workers.dev origin, so canonical links
+match the host that serves them. For the `dwaiconsulting.com` cutover, set
+`SITE_URL=https://dwaiconsulting.com`.
 
 ## Contact form
 
