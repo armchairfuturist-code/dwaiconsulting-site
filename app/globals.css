@@ -694,12 +694,11 @@ p { margin: 0; }
   transform: translateY(-2px);
 }
 
-[data-bar] {
-  overflow: hidden;
-}
-.bar i { opacity: 0; transition: opacity 600ms var(--ease-out); }
-@keyframes growBar { from { width: 0%; } to { width: 100%; } }
-[data-bar].is-in .bar i { animation: growBar 600ms var(--ease-out) both; }
+[data-bar] { overflow: hidden; }
+/* Bars fill on entry. scaleX, not width: the inline width carries the data value. */
+.js [data-bar] i { transform: scaleX(0); transform-origin: left center; }
+.js [data-bar].is-in i { animation: growBar 700ms var(--ease-out) both; }
+@keyframes growBar { from { transform: scaleX(0); } to { transform: scaleX(1); } }
 
 .site-footer a {
   transition: color 160ms ease-out;
