@@ -3,69 +3,56 @@ version: alpha
 name: DWAI Editorial
 description: Editorial trust system for DWAI Consulting, small business benefits guidance.
 colors:
-  primary: "#102b3d"
-  ink: "#102b3d"
-  ink-deep: "#0a202e"
-  ink-hover: "#234c64"
-  paper: "#f6f4ed"
-  paper-raise: "#fffdf6"
-  surface: "#ebe9e0"
-  coral: "#a34b2e"
-  lime: "#d9ef4a"
-  lime-hover: "#c8e22d"
-  body-text: "#23394a"
-  muted-strong: "#41586a"
-  muted: "#536675"
-  subtle: "#616e75"
-  border: "#c9cec9"
-  border-strong: "#b7bdb9"
-  border-dark: "#466171"
-  accent-on-dark: "#9bc1ca"
-  body-on-dark: "#b8cbd0"
+  primary: "#0c2431"
+  ink: "#0c2431"
+  ink-deep: "#071922"
+  ink-hover: "#1b4152"
+  paper: "#f0f1ed"
+  paper-raise: "#fafaf7"
+  surface: "#e3e5df"
+  accent: "#19624c"
+  accent-deep: "#124b3b"
+  accent-tint: "#a7cfbc"
+  body-text: "#22333d"
+  muted-strong: "#3d525d"
+  muted: "#4f636d"
+  subtle: "#59676e"
+  body-on-dark: "#b6c3c6"
+  border: "#c8ccc6"
+  border-strong: "#b3b9b3"
+  border-dark: "#3e5a66"
 typography:
   display-hero:
     fontFamily: Fraunces
-    fontSize: 7.4rem
+    fontSize: 6.2rem
     fontWeight: 500
-    lineHeight: 0.94
-    letterSpacing: -0.06em
-  display-h2:
-    fontFamily: Fraunces
-    fontSize: 4.25rem
-    fontWeight: 500
-    lineHeight: 1.02
+    lineHeight: 0.95
     letterSpacing: -0.045em
-  display-h3:
+  display-page:
     fontFamily: Fraunces
-    fontSize: 1.75rem
+    fontSize: 3.6rem
     fontWeight: 500
-    lineHeight: 1.1
+    lineHeight: 0.98
+    letterSpacing: -0.04em
+  heading:
+    fontFamily: Fraunces
+    fontSize: 1.9rem
+    fontWeight: 500
+    lineHeight: 1.12
     letterSpacing: -0.03em
-  body-lg:
+  body:
     fontFamily: DM Sans
-    fontSize: 1.18rem
+    fontSize: 1.0625rem
+    fontWeight: 400
+    lineHeight: 1.65
+  body-small:
+    fontFamily: DM Sans
+    fontSize: 0.875rem
     fontWeight: 400
     lineHeight: 1.5
-  body-md:
-    fontFamily: DM Sans
-    fontSize: 1.08rem
-    fontWeight: 400
-    lineHeight: 1.72
-  body-sm:
-    fontFamily: DM Sans
-    fontSize: 0.9rem
-    fontWeight: 400
-    lineHeight: 1.55
-  label-caps:
-    fontFamily: DM Mono
-    fontSize: 0.68rem
-    fontWeight: 500
-    lineHeight: 1.4
-    letterSpacing: 0.08em
 rounded:
   none: 0px
-  band: 2px
-  lg: 8px
+  plate: 2px
   pill: 999px
 spacing:
   xs: 0.5rem
@@ -74,21 +61,11 @@ spacing:
   lg: 2.5rem
   xl: 4rem
   xxl: 6rem
-motion:
-  quick:
-    duration: 150ms
-    timingFunction: ease-out
-  base:
-    duration: 160ms
-    timingFunction: cubic-bezier(0.23, 1, 0.32, 1)
-  settle:
-    duration: 180ms
-    timingFunction: ease-out
 components:
   button-primary:
     backgroundColor: "{colors.ink}"
     textColor: "{colors.paper}"
-    typography: "{typography.body-sm}"
+    typography: "{typography.body-small}"
     rounded: "{rounded.pill}"
     padding: 12px
   button-primary-hover:
@@ -96,20 +73,23 @@ components:
     textColor: "{colors.paper}"
     rounded: "{rounded.pill}"
   button-light:
-    backgroundColor: "{colors.lime}"
+    backgroundColor: "{colors.accent-tint}"
     textColor: "{colors.ink}"
     rounded: "{rounded.pill}"
-  button-light-hover:
-    backgroundColor: "{colors.lime-hover}"
+  text-link:
+    backgroundColor: "{colors.paper}"
     textColor: "{colors.ink}"
-    rounded: "{rounded.pill}"
+    typography: "{typography.body-small}"
+  text-link-hover:
+    backgroundColor: "{colors.paper}"
+    textColor: "{colors.accent}"
   nav-link:
     backgroundColor: "{colors.paper}"
     textColor: "{colors.ink}"
-    typography: "{typography.label-caps}"
+    typography: "{typography.body-small}"
   nav-link-hover:
     backgroundColor: "{colors.surface}"
-    textColor: "{colors.coral}"
+    textColor: "{colors.accent}"
   audience-card:
     backgroundColor: "{colors.paper}"
     textColor: "{colors.ink}"
@@ -121,40 +101,40 @@ components:
     backgroundColor: "{colors.ink}"
     textColor: "{colors.paper}"
     padding: 48px
+  data-band:
+    backgroundColor: "{colors.ink-deep}"
+    textColor: "{colors.paper}"
+    padding: 48px
   footer:
     backgroundColor: "{colors.ink-deep}"
     textColor: "{colors.body-on-dark}"
-  kicker:
-    backgroundColor: "{colors.paper}"
-    textColor: "{colors.coral}"
-    typography: "{typography.label-caps}"
-  kicker-separator:
-    backgroundColor: "{colors.paper}"
-    textColor: "{colors.subtle}"
-    typography: "{typography.label-caps}"
+  accent-rule:
+    backgroundColor: "{colors.accent-deep}"
+    textColor: "{colors.paper}"
   article-meta:
     backgroundColor: "{colors.paper}"
     textColor: "{colors.subtle}"
-    typography: "{typography.label-caps}"
-  article-body-text:
-    backgroundColor: "{colors.paper}"
-    textColor: "{colors.body-text}"
-    typography: "{typography.body-md}"
-  article-standfirst:
-    backgroundColor: "{colors.paper}"
-    textColor: "{colors.muted-strong}"
-  section-band-label:
-    backgroundColor: "{colors.ink}"
-    textColor: "{colors.accent-on-dark}"
-    typography: "{typography.label-caps}"
-  section-band-body:
-    backgroundColor: "{colors.ink}"
-    textColor: "{colors.body-on-dark}"
-    typography: "{typography.body-md}"
+    typography: "{typography.body-small}"
   card-copy:
     backgroundColor: "{colors.paper}"
     textColor: "{colors.muted}"
-    typography: "{typography.body-sm}"
+    typography: "{typography.body}"
+  article-body-text:
+    backgroundColor: "{colors.paper}"
+    textColor: "{colors.body-text}"
+    typography: "{typography.body}"
+  article-standfirst:
+    backgroundColor: "{colors.paper}"
+    textColor: "{colors.muted-strong}"
+    typography: "{typography.body}"
+  band-heading:
+    backgroundColor: "{colors.ink}"
+    textColor: "{colors.paper}"
+    typography: "{typography.heading}"
+  band-body:
+    backgroundColor: "{colors.ink}"
+    textColor: "{colors.body-on-dark}"
+    typography: "{typography.body}"
   hairline-divider:
     backgroundColor: "{colors.border}"
     textColor: "{colors.ink}"
@@ -169,53 +149,82 @@ components:
 ## Overview
 
 Editorial trust, not insurance marketing. The interface reads like a considered
-broadsheet: generous white space, a serif voice for claims, a monospace voice for
-labels, and a single warm accent that marks the one action worth taking. Colour is
-structural rather than decorative. Dark bands carry the argument; paper carries
-the reading.
+broadsheet: generous white space, one serif voice for claims, careful hairline
+structure instead of boxes, and a single green accent that marks structure and the
+one action worth taking.
 
-Three typefaces carry three jobs. Fraunces speaks as the publication. DM Sans
-speaks as the advisor. DM Mono speaks as the index, numbering and labelling what
-the reader is looking at. No fourth voice is introduced.
+Two typefaces carry two jobs, and no third is introduced. Fraunces speaks as the
+publication: headlines, card and item titles, figures. DM Sans speaks as the
+advisor: body copy, navigation, labels, buttons.
+
+Every token in this file is defined in `app/globals.css`. Change the stylesheet and
+this document together, or `npm run lint:design` reports drift.
 
 ## Colors
 
-The palette is paper and ink with one warm accent and one cold call to action.
+The palette is paper, ink and one green accent.
 
-- **Ink (#102b3d):** Primary text on paper and background of the argument bands.
-- **Paper (#f6f4ed):** Warm limestone foundation, never pure white.
-- **Coral (#a34b2e):** The editorial accent. Kickers, list markers, hover states.
-- **Lime (#d9ef4a):** Reserved for the single high-intent action on dark grounds.
-- **Surface (#ebe9e0):** Quiet recession for alternating sections and nav hover.
+- **Ink (#0c2431):** Body text on paper, and the ground of the argument bands.
+- **Ink deep (#071922):** The data band and the footer, one step darker than ink.
+- **Paper (#f0f1ed):** The page. Never pure white; `paper-raise` is the lighter
+  surface used inside a contact card.
+- **Accent (#19624c):** Structural green. List markers, hover states, focus rings,
+  the reading progress bar, the rule above a pull quote.
+- **Accent tint (#a7cfbc):** Accent lifted for dark grounds. The only accent that
+  may appear on ink.
 
-Accents are scarce. Coral never fills a block. Lime never appears on paper.
+Accent never fills a block. Tint never appears on paper. There is no second accent
+colour: no coral, no lime, no peach.
+
+Contrast is a constraint, not a preference. Every text pair meets WCAG AA, and
+`subtle` is held above 4.5:1 on both paper and surface so metadata stays legible.
 
 ## Typography
 
-- **Display (Fraunces):** Tight negative tracking, line height at or below 1.05.
-  Headlines are set at optical weight 500, never bold.
-- **Body (DM Sans):** Long-form reading at 1.08rem and 1.72 line height.
-- **Label (DM Mono):** Uppercase, 0.08em tracking, 0.68rem. Used for kickers,
-  indices and metadata only.
+Three body sizes, one display ladder, and nothing between them.
 
-Measure is capped near 41rem for articles and 33rem for intro copy.
+- **Display (Fraunces, weight 500):** Negative tracking, line height at or below
+  1.0. The home headline, page titles and article titles each draw from one clamp,
+  so the ladder is continuous rather than stepped.
+- **Body (DM Sans, 1.0625rem):** The reading size for paragraphs, list items and
+  form fields.
+- **Small (DM Sans, 0.875rem):** Navigation, buttons, metadata, captions and
+  footer text. Nothing on the site is set below 0.875rem.
+
+Headings are never bold and never uppercase. There is no letter-spaced label
+style: where a section needs a name, the heading does the work. Measure is capped
+near 41rem for articles, 62ch for prose inside sections and 34rem for hero intro
+copy.
 
 ## Layout
 
-A 72rem outer measure with 1.25rem gutters on small screens. Sections are separated
-by 6rem vertical rhythm on desktop and 4rem on mobile. Two-column editorial splits
-collapse to one under 700px.
+A 72rem outer measure with 1.25rem gutters on small screens and 2rem from 768px.
+Section rhythm is one token, `--band`: 3.5rem rising to 6rem with the viewport.
+Two-column editorial splits collapse to one under 900px for service pages and
+700px for the home bands.
+
+Structure is drawn with hairlines, not containers. A grid of subjects is a
+1px-gap grid over a rule colour, so the separators are the layout. Bands stack
+paper, ink and ink-deep; adjacent bands are separated by their own value, without
+shadows or rounded corners.
 
 ## Shapes
 
-Rectangular by default, echoing print. Bands use a 2px radius so they read as
-plates, not cards. Interactive controls are pills at 999px. Nothing else is rounded.
+Rectangular by default, echoing print. Bands and contact cards use a 2px radius
+so they read as plates. Interactive controls are pills at 999px. The favicon and
+the hairline bullets are circles. Nothing else is rounded.
 
 ## Motion & Micro-interaction
 
-Motion is short and directional. Transitions run 150 to 180ms on a custom
-ease-out curve. Links shift their arrow 3px on hover. Buttons compress to 0.97 on
-press. Reduced-motion preferences disable all animation.
+Motion is short, directional and physical, and only transform and opacity animate.
+
+One orchestrated entrance: the four hero elements rise 14px in sequence over
+620ms, staggered 60 to 300ms. It runs only when JavaScript has loaded, and
+`prefers-reduced-motion` removes it entirely rather than compressing it.
+
+Everything else is feedback. Transitions run 160 to 180ms on a custom ease-out
+curve. Links shift their arrow 3px on hover. Buttons compress to 0.97 on press.
+The FAQ answer fades in over 240ms. The mobile menu staggers its links 30ms apart.
 
 ## Voice & Content Strategy
 
@@ -223,19 +232,32 @@ Plain, specific and unhedged. Sentences stay under twenty words. The advisor
 addresses a business owner who is overpaying and does not know why. No jargon
 without definition, no fear-based framing, no exclamation marks.
 
+## Accessibility
+
+Body copy is 1.0625rem and never smaller than 0.875rem. Every interactive row
+reaches 44px on touch devices. Focus is always visible: a 2px accent outline with
+a 1px offset. The menu toggle reports its state, the skip link appears on focus,
+and the reading progress bar is decorative only.
+
 ## Components
 
-- **button-primary:** Ink pill, paper text. Compresses on press, lifts arrow on hover.
-- **button-light:** Lime pill with ink text, for dark bands only.
-- **nav-link:** Pill hover on surface, coral text, label-caps type.
-- **audience-card:** Paper panel in a hairline grid, index label in coral.
+- **button-primary:** Ink pill, paper text. Compresses on press.
+- **button-light:** Accent-tint pill with ink text, for dark bands only.
+- **text-link:** Small DM Sans with a 1px underline that thickens on accent hover.
+- **nav-link:** Small DM Sans, pill hover on surface, accent text.
+- **audience-card:** Paper panel in a hairline grid, title in Fraunces, arrow in
+  accent that shifts on hover.
 - **approach-band:** Full-bleed ink section holding the review framework.
-- **footer:** Deepest ink, muted blue text, lime on hover.
+- **data-band:** Deepest ink, one figure in Fraunces, bars in paper and tint.
+- **footer:** Ink-deep, muted blue text, tint labels, paper on hover.
 
 ## Do's and Don'ts
 
-- Do keep one accent per view. Don't stack coral on lime.
-- Do set body text at 1.08rem or larger. Don't drop below 1rem for reading copy.
+- Do keep one accent per view. Don't add a second hue.
+- Do set body text at 1.0625rem. Don't set reading copy below 1rem.
 - Do keep line height at 1.65 or above for paragraphs. Don't set dense text.
-- Do use the pill shape for controls only. Don't round content cards.
-- Don't introduce a fourth typeface.
+- Do use hairlines and space to group content. Don't nest a bordered card inside a
+  bordered card.
+- Do use the pill shape for controls only. Don't round content plates.
+- Don't introduce a third typeface.
+- Don't bring back uppercase kickers or eyebrows above headings.
