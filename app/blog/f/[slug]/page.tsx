@@ -87,12 +87,11 @@ export default async function ArticlePage({ params }: Props) {
       <ReadingProgress />
       <div className="article-head">
         <Link className="article-back" href="/blog">← All insights</Link>
-        <p className="hero-kicker">Executive benefits insights</p>
         <h1>{post.title}</h1>
         {post.description ? <p className="article-standfirst">{post.description}</p> : null}
         <p className="article-meta">
           <span>{formatDate(post.date)}</span>
-          , 
+          <span aria-hidden="true">·</span>
           <span>{Math.max(1, Math.round(words / 220))} min read</span>
         </p>
       </div>

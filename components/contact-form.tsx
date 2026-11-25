@@ -59,7 +59,7 @@ export function ContactForm() {
   if (status === "sent") {
     return (
       <div className="contact-card contact-done" role="status">
-        <p className="eyebrow">Received</p>
+
         <h3>Thank you. Steve has your details.</h3>
         <p>You will hear back within one business day. If it is urgent, call 773-203-6104.</p>
       </div>
@@ -68,7 +68,7 @@ export function ContactForm() {
 
   return (
     <form className="contact-card contact-form" onSubmit={handleSubmit} noValidate>
-      <p className="eyebrow">Request a review</p>
+
       <h3>Tell us what you are working with.</h3>
       <p className="form-note">
         Name, email, employee count and renewal month are enough to start. Have a census ready?{" "}

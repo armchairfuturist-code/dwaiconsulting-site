@@ -33,7 +33,7 @@ export function CostGap() {
                       <span className={`bar ${row.tone}`} aria-hidden="true">
                         <i style={{ width: row.width + "%" }} />
                       </span>
-                      ${row.value.toLocaleString("en-US")}
+                      <b>${row.value.toLocaleString("en-US")}</b>
                     </span>
                   </td>
                 </tr>

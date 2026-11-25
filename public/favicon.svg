@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="DWAI Consulting">
+  <rect width="64" height="64" fill="#0c2431"/>
+  <path d="M8 46V18h9.4c8.6 0 14 5.3 14 14s-5.4 14-14 14H8zm6.4-5.6h2.7c5 0 8-2.9 8-8.4s-3-8.4-8-8.4h-2.7v16.8z" fill="#f0f1ed"/>
+  <path d="M38 46V18h6.2l3.3 13 3.4-13H57v28h-5.5V28.4L48.6 46h-3l-2.9-17.6V46z" fill="#a7cfbc"/>
+</svg>
