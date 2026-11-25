@@ -38,6 +38,7 @@ jobs:
         run: bash scripts/deploy.sh
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          SITE_URL: https://dwaiconsulting.com
-          CONTACT_TO: steve@dwaiconsulting.com
+          CLOUDFLARE_ACCOUNT_ID: 86a92d3f5ed4b3313381515ca4208ae7
+          # Temporary host. Canonicals self-reference workers.dev until the
+          # dwaiconsulting.com cutover, which sets this to the real domain.
+          SITE_URL: https://dwaiconsulting-site.armchairfuturist.workers.dev
