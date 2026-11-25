@@ -9,8 +9,12 @@ export CLOUDFLARE_ACCOUNT_ID="${CLOUDFLARE_ACCOUNT_ID:-86a92d3f5ed4b3313381515ca
 # Canonicals must name the host that serves them. Preview deploys self-reference the
 # workers.dev origin; a cutover deploy sets SITE_URL=https://dwaiconsulting.com.
 export SITE_URL="${SITE_URL:-https://dwaiconsulting-site.armchairfuturist.workers.dev}"
-echo "building with SITE_URL=$SITE_URL"
-npm run build
+if [ "${SKIP_BUILD:-0}" = "1" ]; then
+  echo "SKIP_BUILD=1 - reusing existing .cloudflare/output"
+else
+  echo "building with SITE_URL=$SITE_URL"
+  npm run build
+fi
 
 SRC=.cloudflare/output/v1/workers/default
 STAGE=.deploy
