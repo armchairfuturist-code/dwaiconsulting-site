@@ -46,46 +46,57 @@ Rules that are easy to break by accident:
 Blog articles are markdown in `content/blog/`. `content/blog.json` is generated
 from them at build time (`npm run content:build`) and checked in CI
 (`npm run content:check`), so the two cannot drift. `npm run content:export`
-regenerates the markdown from the JSON. See `docs/EDITING.md`.
+regenerates the markdown from the JSON. See `EDIT-GUIDE.md`, which is written for
+Steve and for his agent.
 
 ## Deploy
 
-Three ways to ship. Only the second needs a real secret.
+The normal path is a push. `.github/workflows/deploy.yml` builds and deploys on
+every push to `main`, in about a minute. It needs the repo secret
+`CLOUDFLARE_API_TOKEN` for account `86a92d3f5ed4b3313381515ca4208ae7`.
 
-**1. From this machine (works today, no token).** Wrangler already holds an OAuth
-session here, so a deploy needs no `CLOUDFLARE_API_TOKEN`:
+That secret holds an account-owned token named `dwaiconsulting-ci`, which carries
+the *Edit Cloudflare Workers* template: Workers Scripts Read and Write, Workers KV
+Storage Write, Account Settings Read, Workers Routes Write, Workers Tail Read,
+Workers R2 Storage Write, Pages Write, Workers CI Write, CF Agents Write, Workers
+Observability Write, Workers Containers Write. It does not expire.
+
+To replace it, create a fresh token in the dashboard under **Manage Account ->
+API Tokens -> Create Token -> Edit Cloudflare Workers**, then:
+
+```bash
+tr -d '\n' < token.txt | gh secret set CLOUDFLARE_API_TOKEN -R armchairfuturist-code/dwaiconsulting-site
+```
+
+The value is shown once and cannot be read back. `wrangler`'s OAuth session can
+push a deploy from this machine, but it cannot mint an API token, and it expires;
+the repo secret does not.
+
+Before this secret existed the workflow printed a warning and skipped the deploy
+while still reporting success, so pushes looked healthy but never shipped. The
+workflow still skips rather than fails when the secret is missing. Check the run
+log for `Deployed dwaiconsulting-site` and a `Current Version ID`, not just a green
+tick.
+
+To deploy by hand from this machine:
 
 ```bash
 npm run deploy
 ```
 
-**2. On push, from GitHub Actions.** `.github/workflows/deploy.yml` runs
-`scripts/deploy.sh` for every push to `main`. It needs one repo secret,
-`CLOUDFLARE_API_TOKEN`, for account `86a92d3f5ed4b3313381515ca4208ae7` with
-**Workers Scripts: Edit**:
-
-```bash
-gh secret set CLOUDFLARE_API_TOKEN -R armchairfuturist-code/dwaiconsulting-site
-```
-
-Until that secret exists the workflow skips the deploy with a warning and still
-passes, so pushes are not blocked.
-
-**3. Or let Cloudflare build it.** Workers Builds connects the repo in the
-dashboard, so Cloudflare builds on push and GitHub stores no secret. In
-**Workers & Pages -> dwaiconsulting-site -> Settings -> Builds**, connect
-`armchairfuturist-code/dwaiconsulting-site`, branch `main`:
-
-- Build command: `npm ci && npm run build`
-- Deploy command: `SKIP_BUILD=1 bash scripts/deploy.sh`
-
-Cloudflare supplies its own short-lived credential for the deploy step. Delete
-`.github/workflows/deploy.yml` if you pick this path, so the two do not both fire.
-
 `scripts/deploy.sh` builds, stages the bundle and assets into `.deploy`, and runs
 `wrangler deploy`. It is a script rather than a plain `wrangler` call because
 `wrangler` refuses to run beside `.cloudflare/output`. `SKIP_BUILD=1` reuses an
-existing build.
+existing build. The staging directory is recreated on each run and removed on
+exit; if a run is killed it can be left behind, and it is safe to delete.
+
+Its default `SITE_URL` is the temporary workers.dev origin, so canonical links
+match the host that serves them. For the `dwaiconsulting.com` cutover, set
+`SITE_URL=https://dwaiconsulting.com`.
+
+Cloudflare Workers Builds was considered and is not in use. It would need the
+Cloudflare GitHub App installed on the repository, which was not done. Do not
+follow that path unless you also delete the workflow, or both will fire.
 
 Its default `SITE_URL` is the temporary workers.dev origin, so canonical links
 match the host that serves them. For the `dwaiconsulting.com` cutover, set
@@ -96,12 +107,17 @@ match the host that serves them. For the `dwaiconsulting.com` cutover, set
 The form on every page posts to `POST /api/contact`, which validates with
 `lib/contact.ts` and sends the lead through Resend.
 
-Set the API key once per Worker (it is a secret, not a var):
+Set the API key once per Worker (it is a secret, not a var). Run this from the
+repository root:
 
 ```bash
-mkdir -p /tmp/dwai && cd /tmp/dwai
 npx wrangler secret put RESEND_API_KEY --name dwaiconsulting-site
 ```
+
+No worker secrets are set at the moment, so the contact form is not delivering
+mail yet. The route answers 503 and the page tells the visitor to email or call,
+which is the intended failure. Setting this key is the last step before the
+contact form takes leads.
 
 `CONTACT_TO` and `CONTACT_FROM` are set in `scripts/deploy.sh`. Without
 `RESEND_API_KEY` the route answers 503 and the form tells the visitor to email or
@@ -114,8 +130,9 @@ app/            routes, layout, globals.css
 components/     header, footer, contact form, cost gap table, motion helpers
 lib/            content, site config, contact validation
 public/         favicon and the intake checklist CSV
-scripts/        deploy.sh
+scripts/        deploy.sh, content.mjs
 DESIGN.md       design system spec
+EDIT-GUIDE.md   how Steve edits the site, no tools needed
 ```
 
 ---
@@ -211,5 +228,18 @@ token lives in the repo secret `CLOUDFLARE_API_TOKEN`. Pointing
 dwaiconsulting.com at the site needs one DNS record change at GoDaddy; no code
 change.
 
-Still open: set `RESEND_API_KEY` so the contact form delivers.
+## 10. Who can change what
+
+The repository is public and `main` is unprotected, so a collaborator commits and
+publishes with no review step. Steve (`Chrixander`) is a collaborator with **write**
+access and can push to `main` directly.
+
+Write is also the ceiling here. On a repository owned by a personal account,
+GitHub refuses to grant `admin` or `maintain` to an outside collaborator, so Steve
+cannot install GitHub Apps on the repository or change its settings. Anything
+needing admin is done by the owner (`armchairfuturist-code`). This is why
+deployment runs from a repo secret rather than from Cloudflare's Git integration.
+
+Still open: set `RESEND_API_KEY` so the contact form delivers. No worker secret is
+set today.
 

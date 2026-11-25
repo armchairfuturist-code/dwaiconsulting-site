@@ -9,7 +9,7 @@ Steve (Chrixander), here's how to make changes to the website.
 3. Click the pencil icon (edit)
 4. Make your changes
 5. Scroll down and click **Commit changes**
-6. Wait ~5 minutes for the site to rebuild
+6. Wait about a minute for the site to rebuild
 
 That's it. No commands, no tools needed.
 
