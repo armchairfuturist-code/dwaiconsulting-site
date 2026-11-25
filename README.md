@@ -43,24 +43,29 @@ Rules that are easy to break by accident:
 
 ## Deploy
 
-Deploy is manual and goes straight to the Worker.
+Pushing to `main` deploys. `.github/workflows/deploy.yml` runs `scripts/deploy.sh`
+on every push, so whoever can push can ship.
+
+The workflow needs one repo secret, `CLOUDFLARE_API_TOKEN`, holding a token for
+account `86a92d3f5ed4b3313381515ca4208ae7` with **Workers Scripts: Edit**. Set it
+once:
 
 ```bash
-npm run deploy
+gh secret set CLOUDFLARE_API_TOKEN -R armchairfuturist-code/dwaiconsulting-site
 ```
+
+Until that secret exists the workflow skips the deploy step with a warning and
+still passes, so pushes are not blocked.
 
 `scripts/deploy.sh` builds, stages the bundle and assets into `.deploy`, and runs
 `wrangler deploy`. It is a script rather than a plain `wrangler` call because
 `wrangler` refuses to run beside `.cloudflare/output`.
 
-The script sets `SITE_URL` to the workers.dev origin by default, so canonical links
-match the preview host. For a cutover to the real domain, override it:
+The workflow sets `SITE_URL` to the temporary workers.dev origin, so canonical
+links match the host that serves them. For the `dwaiconsulting.com` cutover, change
+it to `https://dwaiconsulting.com` in the workflow.
 
-```bash
-SITE_URL=https://dwaiconsulting.com npm run deploy
-```
-
-There is no CI workflow. Pushing to `main` does not deploy.
+Local deploys still work: `npm run deploy`.
 
 ## Contact form
 
