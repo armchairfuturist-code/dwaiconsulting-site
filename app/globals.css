@@ -120,12 +120,15 @@ p { margin: 0; }
   display: flex; align-items: center; gap: 1.25rem;
   min-height: 76px;
 }
-.brand { display: inline-flex; align-items: center; gap: .35rem; flex: 0 0 auto; }
+.brand { display: inline-flex; align-items: center; gap: .5rem; flex: 0 0 auto; }
 .brand img {
-  width: clamp(4.5rem, 6vw, 6rem);
+  width: clamp(4.2rem, 5.5vw, 5.5rem);
   height: auto;
   object-fit: contain;
+  filter: drop-shadow(0 2px 4px rgba(12, 36, 49, .12));
+  transition: transform 200ms ease-out;
 }
+.brand:hover img { transform: scale(1.03); }
 
 .main-nav { display: flex; gap: .15rem; margin-left: auto; }
 .main-nav a {
@@ -607,9 +610,10 @@ p { margin: 0; }
 .site-footer a:hover { color: var(--paper); }
 .brand-footer { display: inline-flex; margin-bottom: .75rem; }
 .brand-footer img {
-  width: clamp(5rem, 7vw, 7rem);
+  width: clamp(4.8rem, 6.5vw, 6.5rem);
   height: auto;
   object-fit: contain;
+  filter: drop-shadow(0 2px 3px rgba(12, 36, 49, .08));
 }
 .footer-bottom {
   display: flex; flex-wrap: wrap; justify-content: space-between; gap: 1rem;
@@ -700,6 +704,10 @@ p { margin: 0; }
 .site-footer a {
   transition: color 160ms ease-out;
 }
+
+/* Scroll reveals: one pass, never replayed. Only ever transform + opacity. */
+.js [data-reveal] { opacity: 0; transform: translateY(24px); transition: opacity 800ms var(--ease-out), transform 800ms var(--ease-out); }
+.js [data-reveal].is-in { opacity: 1; transform: none; }
 
 /* ---------- mobile navigation ---------- */
 

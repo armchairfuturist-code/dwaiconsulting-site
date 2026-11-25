@@ -48,12 +48,12 @@ export function MotionRoot() {
       { threshold: 0.15, rootMargin: "0px 0px -60px 0px" },
     );
 
-    document.querySelectorAll("[data-bar]").forEach((el) => observer.observe(el));
+    document.querySelectorAll("[data-bar], [data-reveal]").forEach((el) => observer.observe(el));
 
     const onMotionChange = () => {
       if (reduce.matches) {
         root.classList.remove("js");
-        document.querySelectorAll("[data-bar]").forEach((el) => el.classList.add("is-in"));
+        document.querySelectorAll("[data-reveal], [data-bar]").forEach((el) => el.classList.add("is-in"));
         observer.disconnect();
       }
     };
