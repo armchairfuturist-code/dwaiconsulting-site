@@ -25,11 +25,14 @@
   },
   "type": "module",
   "scripts": {
-    "dev": "vite dev",
-    "build": "vite build",
+    "dev": "node scripts/content.mjs build && vite dev",
+    "build": "node scripts/content.mjs build && vite build",
     "start": "vite preview",
     "deploy": "bash scripts/deploy.sh",
-    "lint:design": "npx -y @google/design.md lint DESIGN.md"
+    "lint:design": "npx -y @google/design.md lint DESIGN.md",
+    "content:export": "node scripts/content.mjs export",
+    "content:build": "node scripts/content.mjs build",
+    "content:check": "node scripts/content.mjs check"
   },
   "allowScripts": {
     "workerd@1.20261117.1": true,

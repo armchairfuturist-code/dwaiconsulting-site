@@ -22,6 +22,8 @@ jobs:
           node-version: 22
           cache: npm
       - run: npm ci
+      - name: Content is in sync with markdown
+        run: node scripts/content.mjs check
       - name: Check deploy credentials
         id: creds
         env:

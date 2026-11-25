@@ -41,6 +41,13 @@ Rules that are easy to break by accident:
 - No uppercase kickers or eyebrows above headings.
 - Animate `transform` and `opacity` only, and respect `prefers-reduced-motion`.
 
+## Editing content
+
+Blog articles are markdown in `content/blog/`. `content/blog.json` is generated
+from them at build time (`npm run content:build`) and checked in CI
+(`npm run content:check`), so the two cannot drift. `npm run content:export`
+regenerates the markdown from the JSON. See `docs/EDITING.md`.
+
 ## Deploy
 
 Three ways to ship. Only the second needs a real secret.
